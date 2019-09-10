@@ -20,23 +20,15 @@ As a developer in a large organisation, you typically don't have to deal with al
 
 **>>>>>>>>>>>>>> MATT's USING COLLECTIONS WITH THE APPSODY CLI**
 
-**>>>>>>>>>>>>>> MATT's What you will learn**
-
-**>>>>>>>>>>>>>> MATT's Prerequisites**
-
-**>>>>>>>>>>>>>> MATT's Understanding the project layout**
-
-**>>>>>>>>>>>>>> MATT's Running the application**
-
-**>>>>>>>>>>>>>> MATT's Updating the application**
-
-**>>>>>>>>>>>>>> MATT's Stopping the application**
-
-**>>>>>>>>>>>>>> MATT's Deploying to K8s**
-
-**>>>>>>>>>>>>>> MATT's Deploying to KNative**
-
-**>>>>>>>>>>>>>> MATT's Deliver to enterprise pipelines**
+- **>>>>>>>>>>>>>> MATT's What you will learn**
+- **>>>>>>>>>>>>>> MATT's Prerequisites**
+- **>>>>>>>>>>>>>> MATT's Understanding the project layout**
+- **>>>>>>>>>>>>>> MATT's Running the application**
+- **>>>>>>>>>>>>>> MATT's Updating the application**
+- **>>>>>>>>>>>>>> MATT's Stopping the application**
+- **>>>>>>>>>>>>>> MATT's Deploying to K8s**
+- **>>>>>>>>>>>>>> MATT's Deploying to KNative**
+- **>>>>>>>>>>>>>> MATT's Deliver to enterprise pipelines**
 
 **>>>>>>>>>>>>>> End of MATT's list for using the Appsody CLI**
 
