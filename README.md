@@ -19,6 +19,9 @@ As a developer in a large organisation, you typically don't have to deal with al
 
 You can use collections directly from a terminal window by installing the Appsody CLI, or you can use collections within an IDE by installing Codewind. Supported IDEs are VS Code or Eclipse Che.
 
+## Using the Node.js Kabanero Collections
+
+There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these collections is similar. In this guide we will explore how to use the `nodejs-express` Kabanero Collection.
 
 **>>>>>>>>>>>>>> MATT's USING COLLECTIONS WITH THE APPSODY CLI**
 
@@ -37,18 +40,12 @@ You can use collections directly from a terminal window by installing the Appsod
 **>>>>>>>>>>>>>> End of MATT's list for using the Appsody CLI**
 
 
-
-## Using the Node.js Kabanero Collections
-
 **>>>>>>>>>>>>>> MATT's USING COLLECTIONS WITH YOUR IDE VIA CODEWIND**
+### Using Codewind with your IDE
 
 **>>>>>>>>>>>>>> MATT's WHAT YOU WILL LEARN**
 
-There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these collections is similar. In this guide we will explore how to use the `nodejs-express` Kabanero Collection when using VS code as an IDE.
-
-### Using Codewind with your IDE
-
-
+ In this section we will explore how to use the `nodejs-express` Kabanero Collection when using VS code as an IDE.
 
 **>>>>>>>>>>>>>> MATT's PREREQS**
 
