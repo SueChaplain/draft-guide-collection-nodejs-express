@@ -17,7 +17,7 @@ You can select any number of Kabanero Collections to meet your needs, including 
 
 As a developer in a large organisation, you typically don't have to deal with all the components of Kabanero. The Kabanero Foundation software might already be installed and configured by an operations team, which provides some of the underlying services that are required on top of an OKD or Red Hat OpenShift deployment. In addition, the Kabanero Collections available to you might have been chosen and customized in some way to meet local security policies.
 
-You can use collections directly from a terminal window by installing the Appsody CLI, or you can use collections within an IDE by installing Codewind. Supported IDEs are VS Code or Eclipse Che.
+You can use collections directly from a terminal window by installing the Appsody CLI, or you can use collections within an IDE by installing Codewind. Supported IDEs are VS Code or Eclipse.
 
 ## Using the Node.js Kabanero Collections
 
@@ -48,7 +48,7 @@ When you use the Appsody CLI from a terminal window, your experience of using a 
 
 **>>>>>>>>>>>>>> MATT's WHAT YOU WILL LEARN**
 
- In this section we will explore how to use the `nodejs-express` Kabanero Collection when using VS code as an IDE, which requires the Eclipse Codewind  extension.
+ In this section we will explore how to use the `nodejs-express` Kabanero Collection when using VS code as an IDE, which requires the Eclipse Codewind extension.
 
 **>>>>>>>>>>>>>> MATT's PREREQS**
 
@@ -60,9 +60,7 @@ When you use the Appsody CLI from a terminal window, your experience of using a 
 
 Note: Because Codewind includes Appsody code, you must remove any local installations of Appsody before installing the Codewind extension to avoid possible conflicts. Run `brew uninstall Appsody` and manually remove the `.Appsody` folder from your filesystem.
 
-If you are using Eclipse Che instead of VS Code, install the Codewind extension from the [Eclipse Marketplace](https://marketplace.eclipse.org/content/codewind).
-
-3) Codewind requires an Appsody extension, which you can obtain from the [appsodyExtension GitHub repo](https://github.com/kabanero-io/appsodyExtension). Follow the instructions for **Installing the Appsody Extension on Codewind** and **Adding the Appsody Templates** to your Codewind workspace.
+If you are using Eclipse instead of VS Code, install the Codewind extension from the [Eclipse Marketplace](https://marketplace.eclipse.org/content/codewind).
 
 To complete the installation, stop and restart Codewind by right-clicking on your **codewind** folder in your VS Code interface, and selecting **stop**. Right-click again and select **start**.
 
