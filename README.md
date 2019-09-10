@@ -15,10 +15,14 @@ You can select any number of Kabanero Collections to meet your needs, including 
 
 ## Using Kabanero Collections
 
-As a developer in a large organisation, you typically don't have to deal with all the components of Kabanero. The Kabanero Foundation software might already be installed and configured by an operations team, which provides some of the underlying services that are required on top of an OKD or Red Hat OpenShift deployment. In addition, the Kabanero Collections available to you might have been chosen and customized in some way to meet local security policies. Your experience of using a Kabanero Collection will be similar to using Appsody out-of-the-box, as described in the [Appsody Documentation](https://appsody.dev/docs).
+As a developer in a large organisation, you typically don't have to deal with all the components of Kabanero. The Kabanero Foundation software might already be installed and configured by an operations team, which provides some of the underlying services that are required on top of an OKD or Red Hat OpenShift deployment. In addition, the Kabanero Collections available to you might have been chosen and customized in some way to meet local security policies.
+
+You can use collections directly from a terminal window by installing the Appsody CLI, or you can use collections within an IDE by installing Codewind. Supported IDEs are VS Code or Eclipse Che.
 
 
 **>>>>>>>>>>>>>> MATT's USING COLLECTIONS WITH THE APPSODY CLI**
+
+ When you use the Appsody CLI from a terminal window, your experience of using a Kabanero Collection will be similar to using Appsody out-of-the-box, as described in the [Appsody Documentation](https://appsody.dev/docs).
 
 - **>>>>>>>>>>>>>> MATT's What you will learn**
 - **>>>>>>>>>>>>>> MATT's Prerequisites**
@@ -43,6 +47,8 @@ As a developer in a large organisation, you typically don't have to deal with al
 There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these collections is similar. In this guide we will explore how to use the `nodejs-express` Kabanero Collection when using VS code as an IDE.
 
 ### Using Codewind with your IDE
+
+
 
 **>>>>>>>>>>>>>> MATT's PREREQS**
 
