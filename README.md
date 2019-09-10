@@ -25,7 +25,9 @@ There are 3 Kabanero Collections for Node.js; one that includes just the runtime
 
 **>>>>>>>>>>>>>> MATT's USING COLLECTIONS WITH THE APPSODY CLI**
 
- When you use the Appsody CLI from a terminal window, your experience of using a Kabanero Collection will be similar to using Appsody out-of-the-box, as described in the [Appsody Documentation](https://appsody.dev/docs).
+### Using a collection in a terminal window with the Appsody CLI
+
+When you use the Appsody CLI from a terminal window, your experience of using a Kabanero Collection will be similar to using Appsody out-of-the-box, as described in the [Appsody Documentation](https://appsody.dev/docs).
 
 - **>>>>>>>>>>>>>> MATT's What you will learn**
 - **>>>>>>>>>>>>>> MATT's Prerequisites**
@@ -41,11 +43,11 @@ There are 3 Kabanero Collections for Node.js; one that includes just the runtime
 
 
 **>>>>>>>>>>>>>> MATT's USING COLLECTIONS WITH YOUR IDE VIA CODEWIND**
-### Using Codewind with your IDE
+### Using a collection in your IDE
 
 **>>>>>>>>>>>>>> MATT's WHAT YOU WILL LEARN**
 
- In this section we will explore how to use the `nodejs-express` Kabanero Collection when using VS code as an IDE.
+ In this section we will explore how to use the `nodejs-express` Kabanero Collection when using VS code as an IDE, which requires the Eclipse Codewind  extension.
 
 **>>>>>>>>>>>>>> MATT's PREREQS**
 
