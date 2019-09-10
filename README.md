@@ -43,6 +43,7 @@ When you use the Appsody CLI from a terminal window, your experience of using a 
 
 
 **>>>>>>>>>>>>>> MATT's USING COLLECTIONS WITH YOUR IDE VIA CODEWIND**
+
 ### Using a collection in your IDE
 
 **>>>>>>>>>>>>>> MATT's WHAT YOU WILL LEARN**
@@ -82,12 +83,14 @@ A window is displayed with a list of available project types. Select the **Appso
 A new project is created, built, and started inside a container, which is linked to the VS Code workspace. Projects are created with a default set of files, which you can find in a project folder in your **CODEWIND-WORKSPACE**. Click on `app.js` to view the code for the "Hello from Appsody" app.
 
 **>>>>>>>>>>>>>> MATT's RUNNING THE APPLICATION**
+
 To see the running app, right-click on the project in the **CODEWIND** folder and click **open**. Your browser will open to display "Hello from Appsody!" on a local port number.
 
 **>>>>>>>>>>>>>> MATT's UPDATING THE APPLICATION**
+
 Codewind watches for file changes and automatically updates your application. If you edit `app.js` to change the "Hello from Appsody!" string, you can refresh your browser to see the text update straight away.
 
-**>>>>>>>>>>>>>> ADD MATT's STOPPING THE APPLICATION**
+**>>>>>>>>>>>>>> ADD MATT's STOPPING THE APPLICATION - add something here**
 
 
 You are now ready to develop your own app!
@@ -106,13 +109,17 @@ Right-click on the running project in the **CODEWIND** folder and select **Open 
 
 **>>>>>>>>>>>>>>>>> EVERYTHING FROM HERE ON IS IDENTICAL WHETHER YOU USE CODEWIND OR CLI DIRECTLY??**
 
+
 **>>>>>>>>>>>>>> MATT's DEPLOYING TO K8S**
+
 #### Deploying your app on a local Kubernetes cluster
 
 **>>>>>>>>>>>>>> MATT's DEPLOYING TO KNATIVE**
+
 #### Deploying to KNative
 
 **>>>>>>>>>>>>>> MATT's DELIVER TO ENTERPRISE PIPELINES**
+
 #### Delivering your app to your Enterprise production environment
 
 - Check in your changes to GitHub
