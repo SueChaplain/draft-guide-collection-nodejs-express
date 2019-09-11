@@ -208,6 +208,7 @@ When you're done, use `Ctrl-C` to end the appsody run.
 
 2) VS Code requires the Codewind extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=IBM.codewind). When you install the extension, a Codewind workspace is created for you and Docker images are downloaded to your Docker registry.
 
+**>>>>>>> Was the case last week - check**
 Note: Because Codewind includes Appsody code, you must remove any local installations of Appsody before installing the Codewind extension to avoid possible conflicts. Run `brew uninstall Appsody` and manually remove the `.Appsody` folder from your filesystem.
 
 If you are using Eclipse instead of VS Code, install the Codewind extension from the [Eclipse Marketplace](https://marketplace.eclipse.org/content/codewind).
@@ -232,9 +233,21 @@ A window is displayed with a list of available project types. Select the **Appso
 
 A new project is created, built, and started inside a container, which is linked to the VS Code workspace. Projects are created with a default set of files, which you can find in a project folder in your **CODEWIND-WORKSPACE**. Click on `app.js` to view the code for the "Hello from Appsody" app.
 
+![VS Code project view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/nodejsexpress-project.png)
+
+```
+const app = require('express')()
+
+app.get('/', (req, res) => {
+  res.send("Hello from Appsody!");
+});
+
+module.exports.app = app;
+```
+
 **>>>>>>>>>>>>>> SUE's RUNNING THE APPLICATION**
 
-To see the running app, right-click on the project in the **CODEWIND** folder and click **open**. Your browser will open to display "Hello from Appsody!" on a local port number.
+To see the running app, right-click on the project in the **CODEWIND** folder and click **Open App**. Your browser will open to display "Hello from Appsody!" on a local port number.
 
 **>>>>>>>>>>>>>> SUE's UPDATING THE APPLICATION**
 
