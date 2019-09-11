@@ -233,7 +233,7 @@ A window is displayed with a list of available project types. Select the **Appso
 
 A new project is created, built, and started inside a container, which is linked to the VS Code workspace. Projects are created with a default set of files, which you can find in a project folder in your **CODEWIND-WORKSPACE**. Click on `app.js` to view the code for the "Hello from Appsody" app.
 
-![VS Code project view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/nodejsexpress-project.png)
+![VS Code project view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/codewind-workspace.png)
 
 ```
 const app = require('express')()
@@ -248,6 +248,8 @@ module.exports.app = app;
 **>>>>>>>>>>>>>> SUE's RUNNING THE APPLICATION**
 
 To see the running app, right-click on the project in the **CODEWIND** folder and click **Open App**. Your browser will open to display "Hello from Appsody!" on a local port number.
+
+![VS Code project view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/nodejsexpress-project.png)
 
 **>>>>>>>>>>>>>> SUE's UPDATING THE APPLICATION**
 
@@ -264,7 +266,9 @@ As you progress with developing your app in VS Code, you are likely to want to d
 
 ##### Viewing application metrics
 
-Right-click on the running project in the **CODEWIND** folder and select **Open Application Monitor** to open the  dashboard. Graphical information is displayed about CPU, Memory, and HTTP trafic.
+Right-click on the running project in the **CODEWIND** folder and select **Open Application Monitor** to open the  dashboard. Graphical information is displayed about CPU, Memory, and HTTP traffic. Here is a snapshot
+
+![Appmetrics browser view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/nodejsexpress-project.png)
 
 ##### Viewing performance monitoring
 
