@@ -268,7 +268,7 @@ As you progress with developing your app in VS Code, you are likely to want to d
 
 Right-click on the running project in the **CODEWIND** folder and select **Open Application Monitor** to open the  dashboard. Graphical information is displayed about CPU, Memory, and HTTP traffic. Here is a snapshot
 
-![Appmetrics browser view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/nodejsexpress-project.png)
+![Appmetrics browser view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/appmetrics-dash.png)
 
 ##### Viewing performance monitoring
 
