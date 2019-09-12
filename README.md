@@ -1,27 +1,8 @@
 
-**>>>>>>>> WHAT IS A KABANERO COLLECTION**
 
-# Kabanero Collections
+# Using the Node.js Kabanero Collections
 
-A Kabanero Collection defines a logical set of software components for developing applications that can be built and deployed to container platforms.
-
-These components include the application stack for a specific programming language, plus container build and deployment artifacts such as Tekton pipelines. Multiple collections are available, including those for Java, Node, and Spring.
-
-By using a Kabanero Collection, you benefit from industry best practices. Each collection uses components that are known to integrate and work well together, which allows you to develop, test, and deploy applications faster, without specialist knowledge in the underlying container technology.
-
-If necessary, a collection can be customized to meet local requirements. For example, you might want to define specific maintenance levels of software components or expose a particular port for your application. Customizing a collection provides a mechanism for controlling the precise development and runtime environment for an application. In a large organization, customization ensures that applications are developed and tested with a level of consistency that promotes quality and helps guarantee a seamless implementation in your production environment.
-
-You can select any number of Kabanero Collections to meet your needs, including those that support your migration from traditional applications to cloud-native applications with microservices.
-
-## Using Kabanero Collections
-
-As a developer in a large organisation, you typically don't have to deal with all the components of Kabanero. The Kabanero Foundation software might already be installed and configured by an operations team, which provides some of the underlying services that are required on top of an OKD or Red Hat OpenShift deployment. In addition, the Kabanero Collections available to you might have been chosen and customized in some way to meet local security policies.
-
-You can use collections directly from a terminal window by installing the Appsody CLI, or you can use collections within an IDE by installing Codewind. Supported IDEs are VS Code or Eclipse.
-
-## Using the Node.js Kabanero Collections
-
-There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these collections is similar. In this guide we will explore how to use the `nodejs-express` Kabanero Collection.
+A Kabanero Collection defines a logical set of software components for developing applications that can be built and deployed to container platforms. There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these collections is similar. In this guide we will explore how to use the `nodejs-express` Kabanero Collection.
 
 ## What you will learn
 
@@ -60,7 +41,7 @@ A new project is created, built, and started inside a container, which is linked
 
 Projects are created with a default set of files, which you can find in a project folder in your **CODEWIND-WORKSPACE**.
 
-![Diagram shows the VS Code project view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/codewind-workspace.png)
+![Diagram shows the VS Code project view](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/codewind-workspace.png)
 
 
 Click on `app.js` to view the code for the "Hello from Appsody" app.
@@ -77,11 +58,9 @@ module.exports.app = app;
 
 To see the running app, right-click on the project in the **CODEWIND** folder and click **Open App**.
 
-![Diagram shows the menu list for a project, with the Open App option highlighted](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/openapp.png)
+![Diagram shows the menu list for a project, with the Open App option highlighted](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/openapp.png)
 
 Your browser opens to display "Hello from Appsody!" on a local port number.
-
-![Diagram of a browser window, which displays the string "Hello from Appsody!"](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/nodejsexpress-project.png)
 
 ## Updating the application
 
@@ -93,11 +72,11 @@ Edit `app.js` to change the "Hello from Appsody!" string and then refresh your b
 
 You can find information about the running app by opening the Project Overview. Right-click on the project in the **CODEWIND** folder and click **Open Project Overview**.
 
-![Diagram shows the menu list for a project, with the Open Project option highlighted](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/openproject.png)
+![Diagram shows the menu list for a project, with the Open Project option highlighted](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/openproject.png)
 
 VS Code displays information about the status of the app, similar to the following screenshot:
 
-![Diagram shows the Project Overview pane, which provides information about the status of the app](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/images/projectoverview.png)
+![Diagram shows the Project Overview pane, which provides information about the status of the app](https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/projectoverview.png)
 
 To stop the application, click the **Disable project** button.
 
