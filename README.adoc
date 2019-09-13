@@ -24,7 +24,7 @@
 :page-essential-order: 1
 :page-permalink: /guides/collection-nodejs-vscode/
 :imagesdir: /resources
-= Using the Node.js Kabanero Collections with VS Code
+= Developing a cloud native microservice application with a Node.js Kabanero Collections and VS Code
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view
