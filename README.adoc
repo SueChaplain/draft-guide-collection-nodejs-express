@@ -1,11 +1,11 @@
 //	Copyright 2019 IBM Corporation and others.
-//	
+//
 //	Licensed under the Apache License, Version 2.0 (the "License");
 //	you may not use this file except in compliance with the License.
 //	You may obtain a copy of the License at
-//	
+//
 //	http://www.apache.org/licenses/LICENSE-2.0
-//	
+//
 //	Unless required by applicable law or agreed to in writing, software
 //	distributed under the License is distributed on an "AS IS" BASIS,
 //	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -13,37 +13,40 @@
 //	limitations under the License.
 //
 :page-layout: guide
-:projectid: collection-nodejs
-:page-duration: 30 minutes
+:projectid: collection-nodejs-vscode
+:page-duration: 15 minutes
 :page-releasedate: 2019-09-13
-:page-description: Learn how to create, run, update, deploy and deliver a simple cloud native application using the nodejs-express Kabanero Collections
+:page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the nodejs-express Kabanero Collection
 :guide-author: Kabanero
 :page-tags: ['collection', 'Node', 'Node.js', 'Nodejs']
 :page-guide-category: collections
 :page-essential: true
 :page-essential-order: 1
-:page-permalink: /guides/collection-nodejs/
+:page-permalink: /guides/collection-nodejs-vscode/
 :imagesdir: /resources
-= Using the Node.js Kabanero Collections
+= Using the Node.js Kabanero Collections with VS Code
 
 [.hidden]
-NOTE: This repository contains the guide documentation source. To view 
+NOTE: This repository contains the guide documentation source. To view
 the guide in published form, view it on the https://kabanero.io/guides/{projectid}.html[website].
 
-A Kabanero Collection defines a logical set of software components for
-developing applications that can be built and deployed to container
-platforms. There are 3 Kabanero Collections for Node.js; one that
-includes just the runtime environment (`nodejs`) and others that include
-the Express or LoopBack frameworks (`nodejs-express` or
-`nodejs-loopback`). The way in which you use these collections is
-similar. In this guide we will explore how to use the `nodejs-express`
-Kabanero Collection.
+// =================================================================================================
+// What you'll learn
+// =================================================================================================
 
 == What you will learn
 
-In this guide you will learn how to create, run, update, deploy and
-deliver a simple cloud native application using the `nodejs-express`
-Kabanero Collection in your VS Code IDE.
+You will use a Kabanero Node.js Collection in your VS Code IDE to create and run a simple cloud native microservice application.
+Then, you'll update the application and deploy it to Kubernetes or Knative.
+
+There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include
+the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these collections is
+similar. This example uses the `nodejs-express` Kabanero Collection, which contains all the components you need to develop
+your microservice application, including the application stack and any necessary container build and deployment artifacts.
+
+// =================================================================================================
+// Prerequisites
+// =================================================================================================
 
 == Prerequisites
 
@@ -65,6 +68,10 @@ remove the `.Appsody` folder from your filesystem.
 
 You are now ready to create your first project!
 
+// =================================================================================================
+// Getting started
+// =================================================================================================
+
 == Getting started
 
 By default, Codewind is configured to use the public Kabanero Collection
@@ -81,21 +88,18 @@ what's there / appsody repo add URL / appsody repo list for verification
 VS Code is now configured to use the Kabanero Collection Hub for your
 organisation.
 
-The next step is to create a project folder for your application code.
-Open your VS Code Explorer menu and find the *CODEWIND* folder. To
-create a new project, click the '+' symbol on the Projects folder.
+=== Initializing your project
 
-A list of available project types is shown. Select the *Appsody template
-for Nodejs-express*. Choose a suitable name for your project and press
-*Enter* to save it.
+First, create a directory that will contain the project. Open your VS Code Explorer menu and find the *CODEWIND* folder. To
+create a new project, click the '+' symbol on the Projects folder to display a list of available project types.
 
-A new project is created, built, and started inside a container, which
-is linked to the VS Code workspace.
+Select the *Appsody template for Nodejs-express*, choose a suitable name for your project and press *Enter* to save it.
 
-== Understanding the project layout
+A new project is created, built, and started inside a container, which is linked to the VS Code workspace.
 
-Projects are created with a default set of files, which you can find in
-a project folder in your *CODEWIND-WORKSPACE*.
+=== Understanding the project layout
+
+Projects are created with a default set of files, which you can find in a project folder in your *CODEWIND-WORKSPACE*.
 
 image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/codewind-workspace.png[Diagram
 shows the VS Code project view]
@@ -112,22 +116,18 @@ app.get('/', (req, res) => {
 module.exports.app = app;
 ----
 
-To see the running app, right-click on the project in the *CODEWIND*
-folder and click *Open App*.
+To see the running app, right-click on the project in the *CODEWIND* folder and click *Open App*.
 
 image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/openapp.png[Diagram
 shows the menu list for a project, with the Open App option highlighted]
 
-Your browser opens to display "Hello from Appsody!" on a local port
-number.
+Your browser opens to display "Hello from Appsody!" on a local port number.
 
-== Updating the application
+=== Updating the application
 
-Codewind watches for file changes and automatically updates your
-application.
+Codewind watches for file changes and automatically updates your application.
 
-Edit `app.js` to change the "Hello from Appsody!" string and then
-refresh your browser to see the text update straight away.
+Edit `app.js` to change the "Hello from Appsody!" string and then refresh your browser to see the text update straight away.
 
 == Stopping the application
 
@@ -158,15 +158,24 @@ Codewind for VS Code, see the
 https://www.eclipse.org/codewind/mdt-vsc-getting-started.html[Codewind
 documentation].
 
+// =================================================================================================
+// Deploying to Kubernetes
+// =================================================================================================
+
 == Deploying to Kubernetes
+
+// =================================================================================================
+// Deploying to Knative
+// =================================================================================================
 
 == Deploying to KNative
 
-== Delivering your app to your Enterprise production environment
+// =================================================================================================
+// Delivering to enterprise pipelines
+// =================================================================================================
 
-When you've finished developing and testing your app, you are ready to
-deliver it to your enterprise Kabanero pipelines. This step involves
-pushing the project to a pre-configured git repository (public or
-enterprise). Your operations team should have configured the necessary
-hooks on the repository to trigger the pipelines that build and deploy
-your project into the production environment.
+== Delivering to enterprise pipelines
+
+After you develop and test your application, it’s time to deliver it to your enterprise Kabanero pipelines.
+To deliver it to the pipelines, push the project to a pre-configured Git repository. This repository can be public
+or enterprise. Your operations team configures the webhooks on the repository that trigger the pipelines.
