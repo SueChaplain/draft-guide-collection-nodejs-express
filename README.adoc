@@ -1,3 +1,16 @@
+---
+permalink: /guides/collection-nodejs
+---
+:page-layout: guide
+:projectid: collection-nodejs
+:page-duration: 20 minutes
+:page-releasedate: 2019-10-18
+:page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the nodejs-express Kabanero Collection
+:page-tags: ['Collection', 'Node', 'Node.js', 'Nodejs']
+:page-guide-category: collections
+:imagesdir: /assets
+= Developing cloud native microservice applications with the Node.js Kabanero Collections and VS Code
+
 //	Copyright 2019 IBM Corporation and others.
 //
 //	Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,19 +25,6 @@
 //	See the License for the specific language governing permissions and
 //	limitations under the License.
 //
-:page-layout: guide
-:projectid: collection-nodejs
-:page-duration: 20 minutes
-:page-releasedate: 2019-09-13
-:page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the nodejs-express Kabanero Collection
-:guide-author: Kabanero
-:page-tags: ['Collection', 'Node', 'Node.js', 'Nodejs']
-:page-guide-category: collections
-:page-essential: true
-:page-essential-order: 1
-:page-permalink: /guides/collection-nodejs/
-:imagesdir: /resources
-= Developing cloud native microservice applications with the Node.js Kabanero Collections and VS Code
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view
@@ -36,7 +36,7 @@ the guide in published form, view it on the https://kabanero.io/guides/{projecti
 
 == What you will learn
 
-You will learn how to build a simple containerized microservices application from a Kabanero Node.js
+You will learn how to build a simple containerized microservice application from a Kabanero Node.js
 Collection in your VS Code IDE.
 
 There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include
@@ -66,76 +66,65 @@ You are now ready to create your first project!
 
 == Getting started
 
-Kabanero brings together open source technologies that provide a framework for developing cloud native microservices
+Kabanero brings together open source technologies that provide a framework for developing cloud native microservice
 applications. As a developer, you are likely to have a preferred IDE for writing application
-code. In this guide, we will show you how you can develop a simple containerized microservices application that is
-based on the Node.js Express Kabanero Collection in a VS Code IDE.
+code. In this guide, we will show you how you can develop a simple containerized microservice application that is
+based on the Node.js&trade; Express Kabanero Collection in a VS Code IDE.
 
 Kabanero contains Appsody, which is designed to enable applications to be built and tested inside a Docker container.
-To access Appsody functions from your IDE, you need Codewind, which provides a rich user interface that integrates
+To access Appsody functions from your IDE, you need Eclipse Codewind, which provides a rich user interface that integrates
 seamlessly into VS Code. Codewind also provides performance and monitoring tools to help you test and debug applications
 in containers.
 
 When you install Codewind in VS Code, an extension to Appsody is automatically installed as part of your
-Codewind workspace. By default, Codewind is configured to use the latest Appsody stacks that are
-available in the Appsody GitHub repository. However, those stacks are not integrated with Kabanero.
-In order to use Appsody with Kabanero you need to configure Codewind to use a Kabanero Collection Hub.
+Codewind workspace. By default, Codewind is configured to use a set of standard Codewind templates for developing
+cloud native applications. Codewind also contains configuration information for templates in the public Kabanero Collection
+Hub, but this configuration is not enabled by default.
 
-=== Configuring your environment to use a Kabanero Collection Hub
+== Configuring your environment to use a Kabanero Collection Hub
+
+To check the repository configuration of your Codewind installation, open your Codewind workspace in the VS Code Explorer view
+and locate the `.config/repository_list.json` file. The content is similar to the following example:
+
+image::/img/guide/repository.png[link="/img/guide/repository.png" alt="Diagram shows VS Code Explorer view, highlighting the repository_list.json file, which contains the repository configuration."]
+
+In this example you can see that the repository for Standard Codewind Templates is enabled by default (`"enabled": true,`), whereas
+the public repository for Kabanero Collections (v0.1.2) is disabled by default (`"enabled": false,`). You can modify this
+setting to suit your requirements.
 
 As a developer, your enterprise architect might provide you with the URL of a Kabanero Collection Hub that your
-organisation has defined for developers to use. If not, you should clone the *public* Kabanero Collection
-Hub locally. The public collection is updated on a regular basis, so by making a copy, you avoid adopting unplanned changes.
+organisation has defined for developers to use. In this case, you can update the URL string for the Kabanero Collections to point to this
+URL instead. If you haven't been given a URL for your organisation, you should clone the public Kabanero Collection Hub locally
+(The public collection is updated on a regular basis, so by making a copy, you avoid adopting unplanned changes).
 
-To keep things simple in this guide you will add the latest *public* Kabanero Collection Hub repository instead of a clone of
-a Kabanero Collection Hub repository.
+To keep things simple in this guide you will use the *public* Kabanero Collection Hub repository to choose your application template.
 
-Open your Codewind workspace in the VS Code Explorer view. Configure the repository by editing the
-`.config/repository_list.json` file in the **CODEWIND-WORKSPACE**. This file is shown in the following diagram:
+Enable the public Kabanero Collection Hub repository now, by changing the value for this repository in your `.config/repository_list.json`
+to `"enabled": true,`. For the change to take effect you must stop and restart Codewind. Hover over the **CODEWIND** extension and click on
+the word **On** to toggle the status to **Off**. When the Codewind containers have stopped, click on **Off** to restart them.
 
-image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/repository.png[Diagram
-shows VS Code Explorer view, highlighting the repository_list.json file, which contains the repository configuration]
+Codewind is now ready to use the *public* Kabanero Collection Hub.
 
-Add the following entry for the *public* Kabanero Collection Hub before the closing square bracket (*]*) at the bottom of this file:
-
-```
-{
-  "description": "Kabanero Collection Hub",
-  "url": "https://github.com/kabanero-io/collections/releases/latest/download/kabanero-index.json",
-  "enabled": true,
-  "protected": true,
-  "projectStyles": [
-    "Kabanero"
-  ]
-}
-```
-
-Update the existing **Appsody Stacks - appsodyhub** repository configuration to change `"enabled": true,` to `"enabled": false,`.
-
-Codewind is now configured to use the public Kabanero Collection Hub for your organisation.
-
-=== Initializing your project
+== Initializing your project
 
 Find the *CODEWIND* folder in your VS Code Explorer view. The **Projects (Local)** folder should contain **No projects**.
 To create a new project, click on **(Click here to create a project)**.
 
-In this guide, we are going to create a `nodejs-express` microservices application.
+In this guide, we are going to create a `nodejs-express` microservice application.
 
 From the **Create a new project** window, choose the *Appsody Node.js Express simple template*, as shown in the following diagram:
 
-image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/stacklist.png[Diagram
-shows the "Create a new project" view, with the list of available templates]
+image::/img/guide/stacklist.png[link="/img/guide/stacklist.png" alt="Diagram shows the "Create a new project" view, with the list of available templates."]
 
 Choose a suitable name for your project and press *Enter* to save it.
 
 Your new project is created, built, and started inside a container, which is linked to the VS Code workspace.
 
-=== Understanding the project layout
+== Understanding the project layout
 
 Projects are created with a default set of files, which you can find in a project folder in your *CODEWIND-WORKSPACE*.
 
-image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/codewind-workspace.png[Diagram
-shows the VS Code project view]
+image::/img/guide/codewind-workspace.png[link="/img/guide/codewind-workspace.png" alt="Diagram shows the VS Code project view."]
 
 Click on `app.js` to view the code for the "Hello from Appsody" app.
 
@@ -151,13 +140,12 @@ module.exports.app = app;
 
 To see the running app, right-click on the project in the *CODEWIND* folder and click *Open App*.
 
-image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/openapp.png[Diagram
-shows the menu list for a project, with the Open App option highlighted]
+image::/img/guide/openapp.png[link="/img/guide/openapp.png" alt="Diagram shows the menu list for a project, with the Open App option highlighted."]
 
 Your browser opens to display "Hello from Appsody!" on `http://127.0.0.1:<local_port_number>/`. Make a note
 of the <local_port_number> for your next task.
 
-=== Creating and updating the application
+== Creating and updating the application
 
 You are now going to create a new route that listens on `http://127.0.0.1:<local_port_number>/example`.
 
@@ -193,14 +181,13 @@ Codewind watches for file changes and automatically updates your application. Po
 `http://127.0.0.1:<local_port_number>/example` to see your new route, which displays **NEW ROUTE LISTENING**.
 
 
-=== Testing and debugging the application
+== Testing and debugging the application
 
 You can perform a number of operations through the VS Code interface
 that help you develop, test, and debug your application. Right-click on your project to see a
 list of available tasks:
 
-image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/projectdropdown.png[Diagram
-shows the menu list for a project]
+image::/img/guide/projectdropdown.png[link="/img/guide/projectdropdown.png" alt=" Diagram shows the menu list for a project."]
 
 - you can disable the automated build of your project and build it on demand
 - you can restart your application in run mode or debug mode
@@ -209,9 +196,8 @@ shows the menu list for a project]
 Overview. VS Code displays information about your project, including the location, status, and any ports in use. The output is similar to the
 following screenshot:
 
-image:https://github.com/kabanero-io/draft-guide-collection-nodejs/raw/master/resources/projectoverview.png[Diagram
-shows the Project Overview pane, which provides information about the
-status of the app]
+image::/img/guide/projectoverview.png[link="/img/guide/projectoverview.png" alt="Diagram shows the Project Overview pane, which provides information about the
+status of the app.""]
 
 - you can stop the application, by clicking the *Disable project* button.
 
@@ -222,7 +208,7 @@ developing applications with Codewind for VS Code, see the
 https://www.eclipse.org/codewind/mdt-vsc-getting-started.html[Codewind
 documentation].
 
-Congratulations! You have now learned the basic steps for developing a microservices
+Congratulations! You have now learned the basic steps for developing a microservice
 application in VS Code that's based on the Node.js Express Kabanero Collection.
 
 
@@ -232,11 +218,11 @@ application in VS Code that's based on the Node.js Express Kabanero Collection.
 
 == Delivering your application
 
-When you've finished developing and testing your microservices application on your local system, the
+When you've finished developing and testing your microservice application on your local system, the
 next stage in the process is to test the application on a kubernetes or Knative environment. Your
 role in the overall process might end by delivering your changes to a GitHub repository. Here, your
-operations team can automate the deployment of your microservice to kubernetes or Knative by implementing
+operations team can automate the deployment of your microservice application to kubernetes or Knative by implementing
 Tekton webhooks that trigger Tekton pipelines.
 
-Want to learn about Tekton? Using Tekton pipelines to deploy microservices applications is covered
+Want to learn about Tekton? Using Tekton pipelines to deploy microservice applications is covered
 in different guide.
