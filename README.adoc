@@ -36,7 +36,7 @@ the guide in published form, view it on the https://kabanero.io/guides/{projecti
 
 == What you will learn
 
-You will learn how to build a simple containerized microservices application from a Kabanero Node.js
+You will learn how to build a simple containerized microservice application from a Kabanero Node.js
 Collection in your VS Code IDE.
 
 There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include
@@ -66,13 +66,13 @@ You are now ready to create your first project!
 
 == Getting started
 
-Kabanero brings together open source technologies that provide a framework for developing cloud native microservices
+Kabanero brings together open source technologies that provide a framework for developing cloud native microservice
 applications. As a developer, you are likely to have a preferred IDE for writing application
-code. In this guide, we will show you how you can develop a simple containerized microservices application that is
-based on the Node.js Express Kabanero Collection in a VS Code IDE.
+code. In this guide, we will show you how you can develop a simple containerized microservice application that is
+based on the Node.js&trade; Express Kabanero Collection in a VS Code IDE.
 
 Kabanero contains Appsody, which is designed to enable applications to be built and tested inside a Docker container.
-To access Appsody functions from your IDE, you need Codewind, which provides a rich user interface that integrates
+To access Appsody functions from your IDE, you need Eclipse Codewind, which provides a rich user interface that integrates
 seamlessly into VS Code. Codewind also provides performance and monitoring tools to help you test and debug applications
 in containers.
 
@@ -112,14 +112,14 @@ Add the following entry for the *public* Kabanero Collection Hub before the clos
 
 Update the existing **Appsody Stacks - appsodyhub** repository configuration to change `"enabled": true,` to `"enabled": false,`.
 
-Codewind is now configured to use the public Kabanero Collection Hub for your organisation.
+Codewind is now configured to use the *public* Kabanero Collection Hub.
 
 === Initializing your project
 
 Find the *CODEWIND* folder in your VS Code Explorer view. The **Projects (Local)** folder should contain **No projects**.
 To create a new project, click on **(Click here to create a project)**.
 
-In this guide, we are going to create a `nodejs-express` microservices application.
+In this guide, we are going to create a `nodejs-express` microservice application.
 
 From the **Create a new project** window, choose the *Appsody Node.js Express simple template*, as shown in the following diagram:
 
@@ -222,7 +222,7 @@ developing applications with Codewind for VS Code, see the
 https://www.eclipse.org/codewind/mdt-vsc-getting-started.html[Codewind
 documentation].
 
-Congratulations! You have now learned the basic steps for developing a microservices
+Congratulations! You have now learned the basic steps for developing a microservice
 application in VS Code that's based on the Node.js Express Kabanero Collection.
 
 
@@ -232,11 +232,11 @@ application in VS Code that's based on the Node.js Express Kabanero Collection.
 
 == Delivering your application
 
-When you've finished developing and testing your microservices application on your local system, the
+When you've finished developing and testing your microservice application on your local system, the
 next stage in the process is to test the application on a kubernetes or Knative environment. Your
 role in the overall process might end by delivering your changes to a GitHub repository. Here, your
-operations team can automate the deployment of your microservice to kubernetes or Knative by implementing
+operations team can automate the deployment of your microservice application to kubernetes or Knative by implementing
 Tekton webhooks that trigger Tekton pipelines.
 
-Want to learn about Tekton? Using Tekton pipelines to deploy microservices applications is covered
+Want to learn about Tekton? Using Tekton pipelines to deploy microservice applications is covered
 in different guide.
