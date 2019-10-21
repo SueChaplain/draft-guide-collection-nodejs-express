@@ -1,5 +1,5 @@
 ---
-permalink: /guides/collection-nodejs
+permalink: /guides/collection-nodejs/
 ---
 :page-layout: guide
 :projectid: collection-nodejs
@@ -8,7 +8,6 @@ permalink: /guides/collection-nodejs
 :page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the nodejs-express Kabanero Collection
 :page-tags: ['Collection', 'Node', 'Node.js', 'Nodejs']
 :page-guide-category: collections
-:imagesdir: /assets
 = Developing cloud native microservice applications with the Node.js Kabanero Collections and VS Code
 
 //	Copyright 2019 IBM Corporation and others.
@@ -86,7 +85,7 @@ Hub, but this configuration is not enabled by default.
 To check the repository configuration of your Codewind installation, open your Codewind workspace in the VS Code Explorer view
 and locate the `.config/repository_list.json` file. The content is similar to the following example:
 
-image::/img/guide/repository.png[link="/img/guide/repository.png" alt="Diagram shows VS Code Explorer view, highlighting the repository_list.json file, which contains the repository configuration."]
+image::/img/guide/guide-collection-nodejs-repository.png[link="/img/guide/guide-collection-nodejs-repository.png" alt="Diagram shows VS Code Explorer view, highlighting the repository_list.json file, which contains the repository configuration."]
 
 In this example you can see that the repository for Standard Codewind Templates is enabled by default (`"enabled": true,`), whereas
 the public repository for Kabanero Collections (v0.1.2) is disabled by default (`"enabled": false,`). You can modify this
@@ -114,7 +113,7 @@ In this guide, we are going to create a `nodejs-express` microservice applicatio
 
 From the **Create a new project** window, choose the *Appsody Node.js Express simple template*, as shown in the following diagram:
 
-image::/img/guide/stacklist.png[link="/img/guide/stacklist.png" alt="Diagram shows the "Create a new project" view, with the list of available templates."]
+image::/img/guide/guide-collection-nodejs-stacklist.png[link="/img/guide/guide-collection-nodejs-stacklist.png" alt="Diagram shows the Create a new project view, with the list of available templates."]
 
 Choose a suitable name for your project and press *Enter* to save it.
 
@@ -124,7 +123,7 @@ Your new project is created, built, and started inside a container, which is lin
 
 Projects are created with a default set of files, which you can find in a project folder in your *CODEWIND-WORKSPACE*.
 
-image::/img/guide/codewind-workspace.png[link="/img/guide/codewind-workspace.png" alt="Diagram shows the VS Code project view."]
+image::/img/guide/guide-collection-nodejs-codewind-workspace.png[link="/img/guide/guide-collection-nodejs-codewind-workspace.png" alt="Diagram shows the VS Code project view."]
 
 Click on `app.js` to view the code for the "Hello from Appsody" app.
 
@@ -140,7 +139,7 @@ module.exports.app = app;
 
 To see the running app, right-click on the project in the *CODEWIND* folder and click *Open App*.
 
-image::/img/guide/openapp.png[link="/img/guide/openapp.png" alt="Diagram shows the menu list for a project, with the Open App option highlighted."]
+image::/img/guide/guide-collection-nodejs-openapp.png[link="/img/guide/guide-collection-nodejs-openapp.png" alt="Diagram shows the menu list for a project, with the Open App option highlighted."]
 
 Your browser opens to display "Hello from Appsody!" on `http://127.0.0.1:<local_port_number>/`. Make a note
 of the <local_port_number> for your next task.
@@ -187,7 +186,7 @@ You can perform a number of operations through the VS Code interface
 that help you develop, test, and debug your application. Right-click on your project to see a
 list of available tasks:
 
-image::/img/guide/projectdropdown.png[link="/img/guide/projectdropdown.png" alt=" Diagram shows the menu list for a project."]
+image::/img/guide/guide-collection-nodejs-projectdropdown.png[link="/img/guide/guide-collection-nodejs-projectdropdown.png" alt=" Diagram shows the menu list for a project."]
 
 - you can disable the automated build of your project and build it on demand
 - you can restart your application in run mode or debug mode
@@ -196,7 +195,7 @@ image::/img/guide/projectdropdown.png[link="/img/guide/projectdropdown.png" alt=
 Overview. VS Code displays information about your project, including the location, status, and any ports in use. The output is similar to the
 following screenshot:
 
-image::/img/guide/projectoverview.png[link="/img/guide/projectoverview.png" alt="Diagram shows the Project Overview pane, which provides information about the
+image::/img/guide/guide-collection-nodejs-projectoverview.png[link="/img/guide/guide-collection-nodejs-projectoverview.png" alt="Diagram shows the Project Overview pane, which provides information about the
 status of the app.""]
 
 - you can stop the application, by clicking the *Disable project* button.
