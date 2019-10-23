@@ -82,27 +82,26 @@ Hub, but this configuration is not enabled by default.
 
 == Configuring your environment to use a Kabanero Collection Hub
 
-To check the repository configuration of your Codewind installation, open your Codewind workspace in the VS Code Explorer view
-and locate the `.config/repository_list.json` file. The content is similar to the following example:
-
-image::/img/guide/guide-collection-nodejs-repository.png[link="/img/guide/guide-collection-nodejs-repository.png" alt="Diagram shows VS Code Explorer view, highlighting the repository_list.json file, which contains the repository configuration."]
-
-In this example you can see that the repository for Standard Codewind Templates is enabled by default (`"enabled": true,`), whereas
-the public repository for Kabanero Collections (v0.1.2) is disabled by default (`"enabled": false,`). You can modify this
-setting to suit your requirements.
-
-As a developer, your enterprise architect might provide you with the URL of a Kabanero Collection Hub that your
-organisation has defined for developers to use. In this case, you can update the URL string for the Kabanero Collections to point to this
-URL instead. If you haven't been given a URL for your organisation, you should clone the public Kabanero Collection Hub locally
-(The public collection is updated on a regular basis, so by making a copy, you avoid adopting unplanned changes).
+To configure your development environment to use a Kabanero Collection, you must enable the repository as a source for templates.
+As a developer, your enterprise architect might provide you with the URL of a Kabanero Collection Hub that your organisation has
+defined for developers to use. In this case, you can configure Codewind to point to the templates in this Collection Hub.
+If you haven't been given a URL for your organisation, you should clone the public Kabanero Collection Hub locally and configure
+Codewind to use the templates from that repository instead. (The public collection is updated on a regular basis, so by making a
+copy, you avoid adopting unplanned changes).
 
 To keep things simple in this guide you will use the *public* Kabanero Collection Hub repository to choose your application template.
 
-Enable the public Kabanero Collection Hub repository now, by changing the value for this repository in your `.config/repository_list.json`
-to `"enabled": true,`. For the change to take effect you must stop and restart Codewind. Hover over the **CODEWIND** extension and click on
-the word **On** to toggle the status to **Off**. When the Codewind containers have stopped, click on **Off** to restart them.
+To enable the public Kabanero Collection Hub repository, open the **Manage Template Sources** view by right-clicking on
+**Projects (Local)**. The **Template Source Manager** view opens, which is shown in the following screenshot:
 
-Codewind is now ready to use the *public* Kabanero Collection Hub.
+image::/img/guide/guide-collection-nodejs-template-sources.png[link="/img/guide/guide-collection-nodejs-template-sources.png" alt="Screenshot shows Manage Template Sources view, with the list of available templates."]
+
+Click **Refresh** to ensure that you are viewing all the available template sources. To enable Kabanero Collections as a
+template source, click on the switch. To minimize the list of available templates when you start your project, click on the
+switch for any other sources that are enabled to deselect them. Codewind is now ready to use the *public* Kabanero Collection Hub.
+
+To point to an enterprise-specific Kabanero Collection Hub URL, or a local clone, click the **Add New** button and enter the URL to
+the index file in the pop-up field.
 
 == Initializing your project
 
