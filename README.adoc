@@ -4,12 +4,13 @@ permalink: /guides/collection-nodejs/
 :page-layout: guide
 :projectid: collection-nodejs
 :page-duration: 20 minutes
-:page-releasedate: 2019-10-18
+:page-releasedate: 2019-11-06
 :page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the Kabanero `nodejs-express` collection
 :page-tags: ['Collection', 'Node', 'Node.js', 'Nodejs']
 :page-guide-category: collections
 = Developing cloud native microservice applications with the Kabanero Node.js collections and VS Code
 
+//
 //	Copyright 2019 IBM Corporation and others.
 //
 //	Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,7 +71,7 @@ applications. As a developer, you are likely to have a preferred IDE for writing
 code. In this guide, we will show you how you can develop a simple containerized microservice application that is
 based on the Node.js&trade; Express Kabanero Collection in a VS Code IDE.
 
-Kabanero contains Appsody, which is designed to enable applications to be built and tested inside a Docker container.
+Kabanero contains Appsody, which is designed to enable applications to be built and tested inside a container.
 To access Appsody functions from your IDE, you need Eclipse Codewind, which provides a rich user interface that integrates
 seamlessly into VS Code. Codewind also provides performance and monitoring tools to help you test and debug applications
 in containers.
@@ -92,7 +93,7 @@ copy, you avoid adopting unplanned changes).
 To keep things simple in this guide you will use the *public* Kabanero Collection Hub repository to choose your application template.
 
 To enable the public Kabanero Collection Hub repository, open the **Manage Template Sources** view by right-clicking on
-**Projects (Local)**. When the view opens, click the **Add New** button and enter the following URL for the *public* Kabanero Colletion Hub repository in
+**Projects (Local)**. When the view opens, click the **Add New** button and enter the following URL for the *public* Kabanero Collection Hub repository in
 the pop-up field:
 
 ```
@@ -190,7 +191,7 @@ Codewind watches for file changes and automatically updates your application. Po
 == Testing and debugging the application
 
 You can perform a number of operations through the VS Code interface
-that help you develop, test, and debug your application. Right-click on your project to see a
+that help you develop, test, and debug your application locally. Right-click on your project to see a
 list of available tasks:
 
 image::/img/guide/guide-collection-nodejs-projectdropdown.png[link="/img/guide/guide-collection-nodejs-projectdropdown.png" alt="Diagram shows the menu list for a project."]
@@ -213,29 +214,28 @@ developing applications with Codewind for VS Code, see the
 https://www.eclipse.org/codewind/mdt-vsc-getting-started.html[Codewind
 documentation].
 
-Congratulations! You have now learned the basic steps for developing a microservice
-application in VS Code that's based on the Kabanero Node.js Express Collection.
-
+When you've finished unit testing your microservice application on your local system, the
+next stage in the process is to test the microservice in the context of the overall system.
+To test the application as part of the system, you must deploy the system and then the new application,
+which requires access to a Kubernetes or Knative environment.
 
 // =================================================================================================
-// Delivering your application
+// Deploying your application
 // =================================================================================================
 
-== Delivering your application
+== Deploying your application
 
-When you've finished developing and testing your microservice application on your local system, the
-next stage in the process is to test the application on a Kubernetes or Knative environment. This part
-of the process might be handled by another team in your organisation. In this case, your
-role in the overall process ends by delivering your changes to a GitHub repository. Here, your
-operations team can automate the deployment of your microservice application to a kubernetes or Knative test
-environment by implementing Tekton webhooks that trigger Tekton pipelines.
-
-If your responsibilities include testing your microservice application on Kubernetes or Knative, additional
-pre-requisites apply. For example, to test on a Kubernetes cluster, you must install the Appsody CLI and
-configure Kubernetes on your local system. The steps required to deploy an application to Kubernetes or
-Knative are covered in https://kabanero.io/guides/collection-microprofile/[Developing cloud native microservices with the Eclipse MicroProfile Collection and Appsody CLI].
+If your responsibilities include deploying your microservice application on Kubernetes or Knative, additional
+pre-requisites apply. For example, you must install the Appsody CLI and configure Kubernetes on your local system.
+The steps required to deploy an application to Kubernetes or Knative are covered in
+https://kabanero.io/guides/collection-microprofile/[Developing cloud native microservices with the Eclipse MicroProfile Collection and Appsody CLI].
 Although these instructions reference the Kabanero Eclipse MicroProfile collection, the deployment steps
 are similar for the Kabanero Node.js Express collection.
+
+If deploying your microservice application as part of the overall system is handled by another team in your organisation,
+your role in the deployment process ends by delivering your changes to a GitHub repository. Here, your operations team
+can automate the deployment of your microservice application to a kubernetes or Knative test environment by
+implementing Tekton webhooks that trigger Tekton pipelines.
 
 Want to learn about Tekton? Using Tekton pipelines to deploy microservice applications is covered
 in a different guide.
