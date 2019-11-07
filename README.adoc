@@ -5,10 +5,10 @@ permalink: /guides/collection-nodejs/
 :projectid: collection-nodejs
 :page-duration: 20 minutes
 :page-releasedate: 2019-11-06
-:page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the Kabanero `nodejs-express` collection
+:page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the Kabanero `nodejs-express` Collection
 :page-tags: ['Collection', 'Node', 'Node.js', 'Nodejs']
 :page-guide-category: collections
-= Developing cloud native microservice applications with the Kabanero Node.js collections and VS Code
+= Developing cloud native microservice applications with the Kabanero Node.js Collections and VS Code
 
 //
 //	Copyright 2019 IBM Corporation and others.
@@ -40,8 +40,8 @@ You will learn how to build a simple containerized microservice application from
 Collection in your VS Code IDE.
 
 There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include
-the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these collections is
-similar. This example uses the `nodejs-express` collection, which contains all the components you need to develop
+the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these Collections is
+similar. This example uses the `nodejs-express` Collection, which contains all the components you need to develop
 your microservice application and deploy it to your application development cluster.
 
 // =================================================================================================
@@ -87,7 +87,7 @@ To configure your development environment to use a Kabanero Collection, you must
 As a developer, your enterprise architect might provide you with the URL of a Kabanero Collection Hub that your organisation has
 defined for developers to use. In this case, you can configure Codewind to point to the templates in this Collection Hub.
 If you haven't been given a URL for your organisation, you should clone the public Kabanero Collection Hub locally and configure
-Codewind to use the templates from that repository instead. (The public collection is updated on a regular basis, so by making a
+Codewind to use the templates from that repository instead. (The public Collection is updated on a regular basis, so by making a
 copy, you avoid adopting unplanned changes).
 
 To keep things simple in this guide you will use the *public* Kabanero Collection Hub repository to choose your application template.
@@ -100,14 +100,14 @@ the pop-up field:
 https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.json
 ```
 
-Provide a name and a description for the collection.
+Provide a name and a description for the Collection.
 
 The **Template Source Manager** view is shown in the following screenshot:
 
 image::/img/guide/guide-collection-nodejs-template-sources.png[link="/img/guide/guide-collection-nodejs-template-sources.png" alt="Screenshot shows Manage Template Sources view, with the list of available templates."]
 
 Click **Refresh** to ensure that you are viewing all the available template sources. If any template sources other than Kabanero are enabled,
-click on the switches to deselect them; these collections are not supported by the Kabanero application cluster.
+click on the switches to deselect them; these Collections are not supported by the Kabanero application cluster.
 Codewind is now ready to use the *public* Kabanero Collection Hub.
 
 To point to an enterprise-specific Kabanero Collection Hub URL, or a local clone, follow the same procedure to add the URL of the index file.
@@ -229,8 +229,8 @@ If your responsibilities include deploying your microservice application on Kube
 pre-requisites apply. For example, you must install the Appsody CLI and configure Kubernetes on your local system.
 The steps required to deploy an application to Kubernetes or Knative are covered in
 https://kabanero.io/guides/collection-microprofile/[Developing cloud native microservices with the Eclipse MicroProfile Collection and Appsody CLI].
-Although these instructions reference the Kabanero Eclipse MicroProfile collection, the deployment steps
-are similar for the Kabanero Node.js Express collection.
+Although these instructions reference the Kabanero Eclipse MicroProfile Collection, the deployment steps
+are similar for the Kabanero Node.js Express Collection.
 
 If deploying your microservice application as part of the overall system is handled by another team in your organisation,
 your role in the deployment process ends by delivering your changes to a GitHub repository. Here, your operations team
