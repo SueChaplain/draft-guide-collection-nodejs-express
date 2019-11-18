@@ -1,14 +1,14 @@
 ---
-permalink: /guides/collection-nodejs/
+permalink: /guides/collection-nodejs-express/
 ---
 :page-layout: guide
-:projectid: collection-nodejs
-:page-duration: 20 minutes
-:page-releasedate: 2019-11-06
-:page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the Kabanero `nodejs-express` Collection
+:projectid: collection-nodejs-express
+:page-duration: 40 minutes
+:page-releasedate: 2019-11-18
+:page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the Kabanero Node.js Express Collection
 :page-tags: ['Collection', 'Node', 'Node.js', 'Nodejs']
 :page-guide-category: collections
-= Developing cloud native microservice applications with the Kabanero Node.js Collections and VS Code
+= Developing cloud native microservice applications with the Kabanero Node.js Express Collection and the Appsody CLI.
 
 //
 //	Copyright 2019 IBM Corporation and others.
@@ -36,13 +36,20 @@ the guide in published form, view it on the https://kabanero.io/guides/{projecti
 
 == What you will learn
 
-You will learn how to build a simple containerized microservice application from a Kabanero Node.js
-Collection in your VS Code IDE.
-
 There are 3 Kabanero Collections for Node.js; one that includes just the runtime environment (`nodejs`) and others that include
-the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`). The way in which you use these Collections is
-similar. This example uses the `nodejs-express` Collection, which contains all the components you need to develop
-your microservice application and deploy it to your application development cluster.
+the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`).
+
+In this guide, you’ll learn how to create and run a simple cloud native microservice. Then, you’ll update the microservice that you created and deploy it to
+Kubernetes or Knative. This process will be done by using the Kabanero Node.js Express Collection with the link:https://appsody.dev/docs/using-appsody/cli-commands[Appsody CLI].
+Deployment to Knative is optional depending on whether you want to Scale to Zero.
+
+Kabanero’s Node.js Express Collection provides an application stack that enables the development and optimization of microservices.
+With application stacks, developers don’t need to manage full software development stacks or be experts on underlying container
+technologies or Kubernetes. Application stacks are customized for specific enterprises to incorporate their company standards
+and technology choices.
+
+Applications in this guide are written based on the Express API specifications, built and run with Node.js, and deployed to
+Kubernetes through a modern DevOps toolchain that is triggered in Git.
 
 // =================================================================================================
 // Prerequisites
@@ -50,15 +57,14 @@ your microservice application and deploy it to your application development clus
 
 == Prerequisites
 
-. You must have https://docs.docker.com/get-started/[Docker] installed.
-. You must install the VS Code Codewind extension from the
-https://marketplace.visualstudio.com/items?itemName=IBM.codewind[VS Code
-Marketplace], which creates a *CODEWIND* workspace and downloads Docker
-images to your Docker registry.
-. (Optional) If you have an enterprise-specific Kabanero Collection Hub,
-you need the URL to your index file.
+. https://docs.docker.com/get-started/[Docker] must be installed.
+. https://appsody.dev/docs/getting-started/installation[Appsody] must be installed.
+. *Optional:* If you have a repository that contains a set of custom collections, you need the URL for the `index.yaml` file. Use this URL
+to make your custom collections available with the Appsody CLI.
+. *Optional*: If you are testing multiple microservices together, you must have access to a local Kubernetes cluster for local development.
+If you are using Docker Desktop, you can enable Kubernetes from the menu by selecting *Preferences* -> *Kubernetes* -> *Enable Kubernetes*.
+Other options include link:https://www.okd.io/minishift/[Minishift] or link:https://kubernetes.io/docs/setup/learning-environment/minikube/[Minikube].
 
-You are now ready to create your first project!
 
 // =================================================================================================
 // Getting started
@@ -66,99 +72,175 @@ You are now ready to create your first project!
 
 == Getting started
 
-Kabanero brings together open source technologies that provide a framework for developing cloud native microservice
-applications. As a developer, you are likely to have a preferred IDE for writing application
-code. In this guide, we will show you how you can develop a simple containerized microservice application that is
-based on the Node.js&trade; Express Kabanero Collection in a VS Code IDE.
+// =================================================================================================
+// Configuring Appsody
+// =================================================================================================
 
-Kabanero contains Appsody, which is designed to enable applications to be built and tested inside a container.
-To access Appsody functions from your IDE, you need Eclipse Codewind, which provides a rich user interface that integrates
-seamlessly into VS Code. Codewind also provides performance and monitoring tools to help you test and debug applications
-in containers.
+=== *Configuring Appsody*
 
-When you install Codewind in VS Code, an extension to Appsody is automatically installed as part of your
-Codewind workspace. By default, Codewind is configured to use a set of standard Codewind templates for developing
-cloud native applications. Codewind also contains configuration information for templates in the public Kabanero Collection
-Hub, but this configuration is not enabled by default.
+*Note:* The use of the public Kabanero Collection Hub is only for the purposes of this guide. It is recommended that
+you make a private copy of the Kabanero Collection Hub and use it in the same way. However, this demonstration does
+not require that you make your own copy.
 
-== Configuring your environment to use a Kabanero Collection Hub
+Add your Kabanero index to the Appsody CLI. The following example uses the public index for Kabanero Version 0.2.1.
 
-To configure your development environment to use a Kabanero Collection, you must enable the repository as a source for templates.
-As a developer, your enterprise architect might provide you with the URL of a Kabanero Collection Hub that your organisation has
-defined for developers to use. In this case, you can configure Codewind to point to the templates in this Collection Hub.
-If you haven't been given a URL for your organisation, you should clone the public Kabanero Collection Hub locally and configure
-Codewind to use the templates from that repository instead. (The public Collection is updated on a regular basis, so by making a
-copy, you avoid adopting unplanned changes).
+To check the repositories that Appsody can already access, run the following command:
+[role="command"]
+----
+appsody repo list
+----
 
-To keep things simple in this guide you will use the *public* Kabanero Collection Hub repository to choose your application template.
+You see output similar to the following example:
+[source, role='no_copy']
+----
+NAME        URL
+*incubator https://github.com/appsody/stacks/releases/latest/download/incubator-index.yaml
+----
 
-To enable the public Kabanero Collection Hub repository, open the **Manage Template Sources** view by right-clicking on
-**Projects (Local)**. When the view opens, click the **Add New** button and enter the following URL for the *public* Kabanero Collection Hub repository in
-the pop-up field:
+Next, run the following command to add the Kabanero index:
+[role="command"]
+----
+appsody repo add kabanero https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+----
 
-```
-https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.json
-```
+Check the repositories again by running `appsody repo list` to see that the Kabanero repository was added:
+[source, role='no_copy']
+----
+NAME        URL
+*incubator https://github.com/appsody/stacks/releases/latest/download/incubator-index.yaml
+kabanero    https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+----
 
-Provide a name and a description for the Collection.
+In this example, the asterisk (*) shows that `incubator` is the default repository. Run the following command to set the Kabanero index as the default repository:
+[role="command"]
+----
+appsody repo set-default kabanero
+----
 
-The **Template Source Manager** view is shown in the following screenshot:
+Check the available repositories again by running `appsody repo list` to see that the default is updated:
+[source, role='no_copy']
+----
+NAME        URL
+incubator  https://github.com/appsody/stacks/releases/latest/download/incubator-index.yaml
+*kabanero   https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+----
 
-image::/img/guide/guide-collection-nodejs-template-sources.png[link="/img/guide/guide-collection-nodejs-template-sources.png" alt="Screenshot shows Manage Template Sources view, with the list of available templates."]
+*Recommendation*: In enterprise settings, when a solution architect creates application stacks with
+technology choices that are in a private Collection Hub, it's best to remove `incubator` from the list.
+These Appsody stacks are not supported by the Kabanero application cluster. Run the following command
+to remove the `incubator` repository:
 
-Click **Refresh** to ensure that you are viewing all the available template sources. If any template sources other than Kabanero are enabled,
-click on the switches to deselect them; these Collections are not supported by the Kabanero application cluster.
-Codewind is now ready to use the *public* Kabanero Collection Hub.
+[role="command"]
+----
+appsody repo remove incubator
+----
 
-To point to an enterprise-specific Kabanero Collection Hub URL, or a local clone, follow the same procedure to add the URL of the index file.
+Check the available repositories again by running `appsody repo list` to see that `incubator` is removed:
 
-== Initializing your project
+[source, role='no_copy']
+----
+NAME     	URL
+*kabanero	https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+----
 
-Find the *CODEWIND* folder in your VS Code Explorer view. The **Projects (Local)** folder should contain **No projects**.
-To create a new project, click on **(Click here to create a project)**.
+Your Appsody CLI is now configured to use the Kabanero Collections. Next, you need to initialize your project.
 
-In this guide, we are going to create a `nodejs-express` microservice application.
 
-From the **Create a new project** window, choose the *Kabanero Node.js Express simple template*, as shown in the following diagram:
+// =================================================================================================
+// Initializing your project
+// =================================================================================================
 
-image::/img/guide/guide-collection-nodejs-stacklist.png[link="/img/guide/guide-collection-nodejs-stacklist.png" alt="Diagram shows the Create a new project view, with the list of available templates."]
+=== *Initializing your project*
 
-Choose a suitable name for your project and press *Enter* to save it.
+First, create a directory that will contain the project:
+[role="command"]
+----
+mkdir -p ~/projects/simple-nodejs-express
+cd ~/projects/simple-nodejs-express
+----
 
-Your new project is created, built, and started inside a container, which is linked to the VS Code workspace.
+Run the following command to initialize your Node.js Express project with the Appsody CLI:
+[role="command"]
+----
+appsody init nodejs-express
+----
+
+The output from the command is similar to the following example:
+
+[source, role='no_copy']
+----
+Running appsody init...
+Downloading nodejs-express template project from https://github.com/kabanero-io/collections/releases/download/0.2.1/incubator.nodejs-express.v0.2.7.templates.simple.tar.gz
+Download complete. Extracting files from /Users/suechaplain/appsody/simple-nodejs-express/nodejs-express.tar.gz
+Setting up the development environment
+Your Appsody project name has been set to simple-nodejs-express
+Pulling docker image kabanero/nodejs-express:0.2
+Running command: docker pull kabanero/nodejs-express:0.2
+0.2: Pulling from kabanero/nodejs-express
+Digest: sha256:ae05d5a746aa0f043ce589fa73fe8139dc5d829787a8433f9fa01ccd83b9fadb
+Status: Image is up to date for kabanero/nodejs-express:0.2
+docker.io/kabanero/nodejs-express:0.2
+[Warning] The stack image does not contain APPSODY_PROJECT_DIR. Using /project
+Running command: docker run --rm --entrypoint /bin/bash kabanero/nodejs-express:0.2 -c find /project -type f -name .appsody-init.sh
+Successfully initialized Appsody project
+----
+
+Your new project is created, built, and started inside a container.
 
 == Understanding the project layout
 
-Projects are created with a default set of files, which you can find in a project folder in your *CODEWIND-WORKSPACE*.
+For context, the following image displays the structure of the project that you’re working on:
 
-image::/img/guide/guide-collection-nodejs-codewind-workspace.png[link="/img/guide/guide-collection-nodejs-codewind-workspace.png" alt="Diagram shows the VS Code project view."]
+image::/img/guide/collection-nodejs-express-project-layout.png[link="/img/guide/collection-nodejs-express-project-layout.png" alt="Project structure"]
 
-Click on `app.js` to view the code for the "Hello from Appsody" app.
+This project contains the following artifacts:
 
-```
-const app = require('express')()
+* `app.js`, a sample javascript app
+* `package-lock.json`, a project build file
+* `package.json`, a project build file
+* `test.js`, a simple test
 
-app.get('/', (req, res) => {
-  res.send("Hello from Appsody!");
-});
+// =================================================================================================
+// Running the Appsody development environment
+// =================================================================================================
 
-module.exports.app = app;
-```
+== Running the Appsody development environment
 
-To see the running app, right-click on the project in the *CODEWIND* folder and click *Open App*.
+Run the following command to start the Appsody development environment:
+[role="command"]
+----
+appsody run
+----
 
-image::/img/guide/guide-collection-nodejs-openapp.png[link="/img/guide/guide-collection-nodejs-openapp.png" alt="Diagram shows the menu list for a project, with the Open App option highlighted."]
+The Appsody CLI launches a local Docker image that contains the Node.js Express runtime environment that hosts the microservice.
+After some time, you see a message similar to the following example:
 
-Your browser opens to display "Hello from Appsody!" on `http://127.0.0.1:<local_port_number>/`. Make a note
-of the <local_port_number> for your next task.
+[source, role='no_copy']
+----
+[Container] Running command:  npm start
+[Container]
+[Container] > nodejs-express@0.2.8 start /project
+[Container] > node server.js
+[Container]
+[Container] [Mon Nov 18 10:46:35 2019] com.ibm.diagnostics.healthcenter.loader INFO: Node Application Metrics 5.1.1.201911141807 (Agent Core 4.0.5)
+[Container] [Mon Nov 18 10:46:35 2019] com.ibm.diagnostics.healthcenter.mqtt INFO: Connecting to broker localhost:1883
+[Container] App started on PORT 3000
+----
+
+This message indicates that the project is started. Browse to http://localhost:3000 and you can see the Appsody splash screen.
+
+image::/img/guide/collection-nodejs-express-splashscreen.png[link="/img/guide/collection-nodejs-express-splashscreen.png" alt="Browser showing Appsody splash screen"]
+
+You are now ready to begin developing your application.
 
 == Creating and updating the application
 
-You are now going to create a new route that listens on `http://127.0.0.1:<local_port_number>/example`.
+You are now going to create a new route that listens on `http://localhost:3000/example`.
 
 Create a new file called `example.js` in your project folder and populate it with the following code:
 
-```
+[source]
+----
 var express = require('express');
 var router = express.Router();
 /* GET users listing. */
@@ -166,13 +248,14 @@ router.get('/', function(req, res, next) {
  res.send('NEW ROUTE LISTENING');
 });
 module.exports = router;
-```
+----
 
 Save the changes.
 
 Edit the `app.js` file and update the contents to match the following code:
 
-```
+[source]
+----
 const app = require('express')()
 var exampleRouter = require("./example")
 app.get('/', (req, res) => {
@@ -180,62 +263,87 @@ app.get('/', (req, res) => {
 });
 app.use("/example", exampleRouter);
 module.exports.app = app;
-```
+----
 
 Save the changes.
 
-Codewind watches for file changes and automatically updates your application. Point your browser to
-`http://127.0.0.1:<local_port_number>/example` to see your new route, which displays **NEW ROUTE LISTENING**.
-
-
-== Testing and debugging the application
-
-You can perform a number of operations through the VS Code interface
-that help you develop, test, and debug your application locally. Right-click on your project to see a
-list of available tasks:
-
-image::/img/guide/guide-collection-nodejs-projectdropdown.png[link="/img/guide/guide-collection-nodejs-projectdropdown.png" alt="Diagram shows the menu list for a project."]
-
-- you can disable the automated build of your project and build it on demand
-- you can restart your application in run mode or debug mode
-- you can view the available logs to troubleshoot issues
-- you can find information about the running app by opening the Project
-Overview. VS Code displays information about your project, including the location, status, and any ports in use. The output is similar to the
-following screenshot:
-
-image::/img/guide/guide-collection-nodejs-projectoverview.png[link="/img/guide/guide-collection-nodejs-projectoverview.png" alt="Diagram shows the Project Overview pane, which provides information about the status of the app."]
-
-- you can stop the application, by clicking the *Disable project* button.
-
-At some stage in development, you might want to do some local
-performance testing. As well as checking whether your code runs cleanly, Codewind
-provides application metrics and performance monitoring. For more information about
-developing applications with Codewind for VS Code, see the
-https://www.eclipse.org/codewind/mdt-vsc-getting-started.html[Codewind
-documentation].
-
-When you've finished unit testing your microservice application on your local system, the
-next stage in the process is to test the microservice in the context of the overall system.
-To test the application as part of the system, you must deploy the system and then the new application,
-which requires access to a Kubernetes or Knative environment.
+Appsody watches for file changes and automatically updates your application. Point your browser to
+`http://localhost:3000/example` to see your new route, which displays **NEW ROUTE LISTENING**.
 
 // =================================================================================================
-// Deploying your application
+// Testing the application
 // =================================================================================================
 
-== Deploying your application
+== Testing the application
 
-If your responsibilities include deploying your microservice application on Kubernetes or Knative, additional
-pre-requisites apply. For example, you must install the Appsody CLI and configure Kubernetes on your local system.
-The steps required to deploy an application to Kubernetes or Knative are covered in
-https://kabanero.io/guides/collection-microprofile/[Developing cloud native microservices with the Eclipse MicroProfile Collection and Appsody CLI].
-Although these instructions reference the Kabanero Eclipse MicroProfile Collection, the deployment steps
-are similar for the Kabanero Node.js Express Collection.
+If you are building an application that is composed of microservices, you need to test within the context of the overall system. First, test your application and perform unit testing in isolation. To test the application as part of the system, deploy the system and then the new application.
 
-If deploying your microservice application as part of the overall system is handled by another team in your organisation,
-your role in the deployment process ends by delivering your changes to a GitHub repository. Here, your operations team
-can automate the deployment of your microservice application to a kubernetes or Knative test environment by
-implementing Tekton webhooks that trigger Tekton pipelines.
+You can choose how you want to deploy the system and application. If you have adequate CPU and memory to run MiniShift, the application, and the associated services, then you can deploy the application on a local Kubernetes that is running on your computer. Alternatively, you can enable Docker Desktop for Kubernetes, which is described in the Prerequisites section of the guide.
 
-Want to learn about Tekton? Using Tekton pipelines to deploy microservice applications is covered
-in a different guide.
+You can also deploy the system, application, and the associated services in a private namespace on a development cluster. From this private namespace, you can commit the microservices in Git repositories and deploy them through a DevOps pipeline, not directly to Kubernetes.
+
+=== Testing locally on Kubernetes
+
+After you finish writing your application code, the Appsody CLI makes it easy to deploy directly to a Kubernetes cluster for further local testing.
+ The ability to deploy directly to a Kubernetes cluster is valuable when you want to test multiple microservices together or test with services that the application requires.
+
+Ensure that your `kubectl` command is configured with cluster details and run the following command to deploy the application:
+[role="command"]
+----
+appsody deploy
+----
+
+This command builds a new Docker image that is optimized for production deployment and deploys the image to your local Kubernetes cluster.
+After some time you see a message similar to the following example:
+
+[source, role='no_copy']
+----
+Deployed project running at http://localhost:30262
+----
+
+Run the following command to check the status of the application pods:
+[role="command"]
+----
+kubectl get pods
+----
+
+In the following example output, you can see that a `simple-nodejs-express` pod is running:
+[source, role='no_copy']
+----
+NAME                                    READY   STATUS    RESTARTS   AGE
+appsody-operator-6bbddbd455-nfhnm        1/1     Running   0          26d
+simple-nodejs-express-775b655768-lqn6q   1/1     Running   0          3m10s
+----
+
+After the `simple-nodejs-express` pod starts, go to the URL that was returned when you ran the `appsody deploy` command,
+and you see the Appsody microservice splash screen. To see the response from your application, point your browser to
+the `<URL_STRING>/example` URL, where `<URL_STRING>` is the URL that was returned. For example, http://localhost:30262
+was returned in the previous example. Go to the http://localhost:30262/example URL to see the deployed application response.
+
+Use the following command to stop the deployed application:
+[role="command"]
+----
+appsody deploy delete
+----
+
+After you run this command and the deployment is deleted, you see the following message:
+[source, role='no_copy']
+----
+Deployment deleted
+----
+
+=== Testing with Knative serving
+
+You can choose to test an application that is deployed with Knative Serving to take advantage of Scale to Zero. Not all applications can be written to effectively take advantage of Scale to Zero. The Kabanero operator-based installation configures Knative on the Kubernetes cluster, specifically OKD 3.11. Because of the resources that are required to run Knative and its dependencies, testing locally can be difficult. Publish to Kubernetes by using pipelines that are described later in the guide. Your operations team can configure the pipelines so that Knative Serving is enabled for deployment.
+
+// =================================================================================================
+// Publishing to Kubernetes by using pipelines
+// =================================================================================================
+
+== Publishing to Kubernetes by using pipelines
+
+After you develop and test your application in your local environment, it’s time to publish it to your enterprise’s pipeline. From your enterprise’s pipeline, you can deploy the application to the appropriate Kubernetes cluster for staging or production. Complete this process in Git.
+
+When Kabanero is installed, deploying applications to a Kubernetes cluster always occurs through the DevOps pipeline that is triggered in Git. Using DevOps pipelines to deploy applications ensures that developers can focus on application code, not on containers or Kubernetes infrastructure. From an enterprise perspective, this deployment process ensures that both the container image build and the deployment to Kubernetes or Knative happen in a secure and consistent way that meets company standards.
+
+To deliver your application to the pipeline, push the project to the pre-configured Git repository that has a configured webhook. This configured webhook triggers the enterprise build and deploy pipeline.
