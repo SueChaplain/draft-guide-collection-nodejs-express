@@ -2,11 +2,10 @@
 permalink: /guides/collection-nodejs-express/
 ---
 :page-layout: guide
-:projectid: collection-nodejs-express
 :page-duration: 40 minutes
-:page-releasedate: 2019-11-18
+:page-releasedate: 2019-11-25
 :page-description: Learn how to create, run, update, deploy, and deliver a simple cloud native application using the Kabanero Node.js Express Collection
-:page-tags: ['Collection', 'Node', 'Node.js', 'Nodejs']
+:page-tags: ['Collection', 'Node.js']
 :page-guide-category: collections
 = Developing cloud native microservice applications with the Kabanero Node.js Express Collection and Appsody CLI.
 
@@ -36,7 +35,7 @@ the guide in published form, view it on the https://kabanero.io/guides/{projecti
 
 == What you will learn
 
-There are 3 Kabanero Collections for Node.js@reg;, one that includes just the runtime environment (`nodejs`) and others that include
+There are 3 Kabanero Collections for Node.js&reg;, one that includes just the runtime environment (`nodejs`) and others that include
 the Express or LoopBack frameworks (`nodejs-express` or `nodejs-loopback`).
 
 In this guide, you’ll learn how to create and run a simple cloud native microservice. Then, you’ll update the microservice that you created and deploy it to
