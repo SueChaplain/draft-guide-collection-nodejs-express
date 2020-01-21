@@ -10,7 +10,7 @@ permalink: /guides/collection-nodejs-express/
 = Developing cloud native microservice applications with the Kabanero Node.js Express Collection and Appsody CLI.
 
 //
-//	Copyright 2019 IBM Corporation and others.
+//	Copyright 2019, 2020 IBM Corporation and others.
 //
 //	Licensed under the Apache License, Version 2.0 (the "License");
 //	you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ Other options include link:https://www.okd.io/minishift/[Minishift] or link:http
 you make a private copy of the Kabanero Collection Hub and use it in the same way. However, this demonstration does
 not require that you make your own copy.
 
-Add your Kabanero index to the Appsody CLI. The following example uses the public index for Kabanero Version 0.2.1.
+Add your Kabanero index to the Appsody CLI. The following example uses the public index for Kabanero Version 0.5.0.
 
 To check the repositories that Appsody can already access, run the following command:
 [role="command"]
@@ -99,7 +99,7 @@ NAME        URL
 Next, run the following command to add the Kabanero index:
 [role="command"]
 ----
-appsody repo add kabanero https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+appsody repo add kabanero https://github.com/kabanero-io/collections/releases/download/0.5.0/kabanero-index.yaml
 ----
 
 Check the repositories again by running `appsody repo list` to see that the Kabanero repository was added:
@@ -107,7 +107,7 @@ Check the repositories again by running `appsody repo list` to see that the Kaba
 ----
 NAME        URL
 *incubator https://github.com/appsody/stacks/releases/latest/download/incubator-index.yaml
-kabanero    https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+kabanero    https://github.com/kabanero-io/collections/releases/download/0.5.0/kabanero-index.yaml
 ----
 
 In this example, the asterisk (*) shows that `incubator` is the default repository. Run the following command to set the Kabanero index as the default repository:
@@ -121,7 +121,7 @@ Check the available repositories again by running `appsody repo list` to see tha
 ----
 NAME        URL
 incubator  https://github.com/appsody/stacks/releases/latest/download/incubator-index.yaml
-*kabanero   https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+*kabanero   https://github.com/kabanero-io/collections/releases/download/0.5.0/kabanero-index.yaml
 ----
 
 *Recommendation*: In enterprise settings, when a solution architect creates application stacks with
@@ -139,7 +139,7 @@ Check the available repositories again by running `appsody repo list` to see tha
 [source, role='no_copy']
 ----
 NAME     	URL
-*kabanero	https://github.com/kabanero-io/collections/releases/download/0.2.1/kabanero-index.yaml
+*kabanero	https://github.com/kabanero-io/collections/releases/download/0.5.0/kabanero-index.yaml
 ----
 
 Your Appsody CLI is now configured to use the Kabanero Collections. Next, you need to initialize your project.
@@ -169,18 +169,18 @@ The output from the command is similar to the following example:
 [source, role='no_copy']
 ----
 Running appsody init...
-Downloading nodejs-express template project from https://github.com/kabanero-io/collections/releases/download/0.2.1/incubator.nodejs-express.v0.2.7.templates.simple.tar.gz
-Download complete. Extracting files from /Users/suechaplain/appsody/simple-nodejs-express/nodejs-express.tar.gz
+Downloading nodejs-express template project from https://github.com/kabanero-io/collections/releases/download/0.5.0/incubator.nodejs-express.v0.2.7.templates.simple.tar.gz
+Download complete. Extracting files from /Users/user1/appsody/simple-nodejs-express/nodejs-express.tar.gz
 Setting up the development environment
 Your Appsody project name has been set to simple-nodejs-express
-Pulling docker image kabanero/nodejs-express:0.2
-Running command: docker pull kabanero/nodejs-express:0.2
+Pulling docker image kabanero/nodejs-express:0.5
+Running command: docker pull kabanero/nodejs-express:0.5
 0.2: Pulling from kabanero/nodejs-express
 Digest: sha256:ae05d5a746aa0f043ce589fa73fe8139dc5d829787a8433f9fa01ccd83b9fadb
-Status: Image is up to date for kabanero/nodejs-express:0.2
-docker.io/kabanero/nodejs-express:0.2
+Status: Image is up to date for kabanero/nodejs-express:0.5
+docker.io/kabanero/nodejs-express:0.5
 [Warning] The stack image does not contain APPSODY_PROJECT_DIR. Using /project
-Running command: docker run --rm --entrypoint /bin/bash kabanero/nodejs-express:0.2 -c find /project -type f -name .appsody-init.sh
+Running command: docker run --rm --entrypoint /bin/bash kabanero/nodejs-express:0.5 -c find /project -type f -name .appsody-init.sh
 Successfully initialized Appsody project
 ----
 
@@ -218,7 +218,7 @@ After some time, you see a message similar to the following example:
 ----
 [Container] Running command:  npm start
 [Container]
-[Container] > nodejs-express@0.2.8 start /project
+[Container] > nodejs-express@0.5.0 start /project
 [Container] > node server.js
 [Container]
 [Container] [Mon Nov 18 10:46:35 2019] com.ibm.diagnostics.healthcenter.loader INFO: Node Application Metrics 5.1.1.201911141807 (Agent Core 4.0.5)
